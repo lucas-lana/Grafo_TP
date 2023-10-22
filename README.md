@@ -2,11 +2,15 @@
 Repositório para o desinvolvimento do trabalho prático, da disciplina de grafos
 
 
+
 Links e materias de apoio para o desinvolvimento:
 
 *Instalar a biblioteca usada para realizar operações com grafo: https://pypi.org/project/networkx/
+
 *Tutorial de como usar a biblioteca: https://networkx.org/documentation/latest/tutorial.html
+
 *Lista das funções presentes na biblioteca: https://networkx.org/documentation/stable/reference/functions.html
+
 *Como ler os grafos em formato 'graphml': https://networkx.org/documentation/stable/reference/readwrite/graphml.html & 
                                           https://stackoverflow.com/questions/17002594/processing-graphml-file-with-networkx-in-python
 
