@@ -28,10 +28,8 @@ def exibir_submenu():
         opcao2 = input("Digite uma opção: ")
         opcao2 = int(opcao2)
         if opcao2 == 1:
-            print("Você selecionou a opção 1.")
             break
         elif opcao2 == 2:
-            print("Você selecionou a opção 2.")
             exit()
         else:
             print("Opção inválida.")
@@ -76,7 +74,7 @@ while True:
         
         elif opcao == 2:
             ordem = Grafo.order()
-            print("A ordem do grafo é: ",ordem)
+            print("A ordem do grafo é: ", ordem)
             exibir_submenu()
             
         elif opcao == 3:
@@ -91,7 +89,10 @@ while True:
             exibir_submenu()
                 
         elif opcao == 5:
-            print("Você selecionou a opção 5.")
+            print ("Vértices do grafo: ", Grafo.nodes())
+            vertice = input("Digite um vértice: ")
+            grau = Grafo.degree(vertice)          
+            print("O grau do vértice ", vertice, " é: ", grau)
             exibir_submenu()
             
         elif opcao == 6:
@@ -110,15 +111,20 @@ while True:
             exibir_submenu()
             
         elif opcao == 9:
-            print("Você selecionou a opção 9.")
+            print("O diâmetro do grafo é: ", end='')
+            diametro = diameter(Grafo)
+            print(diametro)
             exibir_submenu()
             
         elif opcao == 10:
             print("Você selecionou a opção 10.")
             exibir_submenu()
             
-        elif opcao == 11:
-            print("Você selecionou a opção 11.")
+        elif opcao == 11: #BÁRBARA:
+            # Determinar a sequência de vértices visitados na busca em largura e informar a(s)
+            # aresta(s) que não faz(em) parte da árvore de busca em largura. OBS: a árvore de
+            # largura deve ser gerada também em formato GraphML.
+            print()
             exibir_submenu()
             
         elif opcao == 12:
