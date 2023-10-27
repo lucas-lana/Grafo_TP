@@ -1,22 +1,8 @@
 import networkx as nx
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from networkx import *
 import os
 import time
-
-#Função para receber qualquer grafo.graphml
-
-#def receberGrafo():
-    # Cria um grafo vazio
-#    Grafo = nx.Graph()
-#    print("Digite o nome do arquivo que contém o grafo: ")
-#    Arquivo = input()
-#    Arquvo = str(Arquivo)
-    
-    #A variável Grafo recebe um grafo lido de um arquivo GraphML (teste.graphml)
-#    Grafo = nx.read_graphml(Arquivo)
-#    print("Grafo lido com sucesso!")
-
 
 #Mini menu para retornar para o menu principal
 def exibir_submenu():
@@ -24,21 +10,90 @@ def exibir_submenu():
         print("\n----------//----------")
         print("Deseja voltar para o menu anterior?")
         print("1 - Sim")
-        print("2 - Não")
+        print("2 - Não (Sair do programa))")
         opcao2 = input("Digite uma opção: ")
         opcao2 = int(opcao2)
         if opcao2 == 1:
             break
         elif opcao2 == 2:
+            print("Saindo...")
             exit()
         else:
             print("Opção inválida.")
+
+
+#Função para configurar a exibição do grafo
+def configurarGrafo(Grafo_Generico):
+    print("----------//----------\nDeseja que os vétices sejam numerados?")
+    print("1 - Sim")
+    print("2 - Não")
+            
+    opcao3 = int(input("Digite uma opção: "))
+    if opcao3 == 1:
+        valor = True     
+    elif opcao3 == 2:
+        valor = False
+                
+    print("----------//----------\nQual cor deseja que os vértices sejam?")
+    print("1 - Azul")
+    print("2 - Verde")
+    print("3 - Vermelho")
+    print("4 - Amarelo")
+    print("5 - Preto")
+    print("6 - Branco")
+            
+    cor_vertices = int(input("Digite uma opção: "))
+    if cor_vertices == 1:
+        cor_vertices = 'blue'
+    elif cor_vertices == 2:
+        cor_vertices = 'green'
+    elif cor_vertices == 3:
+        cor_vertices = 'red'
+    elif cor_vertices == 4:
+        cor_vertices = 'yellow'
+    elif cor_vertices == 5:
+        cor_vertices = 'black'
+    elif cor_vertices == 6:
+        cor_vertices = 'white'    
+            
+    print("----------//----------\nQual cor deseja que as arestas sejam?")
+    print("1 - Azul")
+    print("2 - Verde")
+    print("3 - Vermelho")
+    print("4 - Amarelo")
+    print("5 - Preto")
+    print("6 - Branco")
+            
+    cor_arestas = int(input("Digite uma opção: "))
+    if cor_arestas == 1:
+        cor_arestas = 'blue'
+    elif cor_arestas == 2:
+        cor_arestas = 'green'
+    elif cor_arestas == 3:
+        cor_arestas = 'red'
+    elif cor_arestas == 4:
+        cor_arestas = 'yellow'
+    elif cor_arestas == 5:
+        cor_arestas = 'black'
+    elif cor_arestas == 6:
+        cor_arestas = 'white'
+                
+    pos = nx.spring_layout(Grafo_Generico)
+    nx.draw(Grafo_Generico, pos, with_labels=valor, font_weight='normal', node_size=300, node_color=cor_vertices, edge_color=cor_arestas)
+    plt.show()
 
 
 #receberGrafo()
 
 Grafo = nx.Graph()
 Grafo = nx.read_graphml('teste.graphml')   
+
+#print("Digite o nome do arquivo que contém o grafo: ")
+#Arquivo = input()
+#Arquvo = str(Arquivo)
+    
+#A variável Grafo recebe um grafo lido de um arquivo GraphML (teste.graphml)
+#Grafo = nx.read_graphml(Arquivo)
 print("Grafo lido com sucesso!")
 
 #Menu de opções
@@ -46,16 +101,16 @@ while True:
         #Continua a execução do programa até que o usuário digite a opção 14
         
         #Imprime o menu de opções
-        print("\n\n----MENU----\n")
-        print("1 - Imprimir grafo")
-        print("2 - Retornar a ordem do grafo")
-        print("3 - Retornar o tamanho do grafo")
-        print("4 - Retornar os vizinhos de um vértice")
-        print("5 - Determinar o grau de um vértice")
-        print("6 - Retornar a sequência de graus do grafo")
-        print("7 - Determinar a excentricidade de um vértice")
-        print("8 - Determinar o raio do grafo")
-        print("9 - Determinar o diâmetro do grafo")
+        print("\n\n/--------MENU--------/")
+        print("01 - Imprimir grafo")
+        print("02 - Retornar a ordem do grafo")
+        print("03 - Retornar o tamanho do grafo")
+        print("04 - Retornar os vizinhos de um vértice")
+        print("05 - Determinar o grau de um vértice")
+        print("06 - Retornar a sequência de graus do grafo")
+        print("07 - Determinar a excentricidade de um vértice")
+        print("08 - Determinar o raio do grafo")
+        print("09 - Determinar o diâmetro do grafo")
         print("10 - Determinar o centro do grafo")
         print("11 - Determinar sequencia de vertices visitados na busca em largura")
         print("12 - Determinar distância e caminho mínimo")
@@ -63,13 +118,11 @@ while True:
         print("14 - Sair")
         print("----------//----------")
         
-        
-        opcao = (input("\nDigite uma opção: "))
+        opcao = (input("Digite uma opção: "))
         opcao = int(opcao)
         
         if opcao == 1:
-            #nx.draw(Grafo, with_labels=True, font_weight='bold')
-            print("Em desenvolvimento...")
+            configurarGrafo(Grafo)
             exibir_submenu()
         
         elif opcao == 2:
@@ -77,7 +130,7 @@ while True:
             print("A ordem do grafo é: ", ordem)
             exibir_submenu()
             
-        elif opcao == 3: # Ana
+        elif opcao == 3:
             print("Você selecionou a opção 3.")
             tamanho_grafo = len(Grafo.nodes()) + len(Grafo.edges())
             print("Tamanho do grafo", tamanho_grafo)
@@ -108,8 +161,7 @@ while True:
             print("A excentricidade do vértice ", vertice, " é: ", excentricidade)
             exibir_submenu()
             
-        elif opcao == 8: # Ana
-            print("Você selecionou a opção 8.")
+        elif opcao == 8:
             raio = nx.radius(Grafo)
             print("O raio do grafo é:", raio)
             exibir_submenu()
@@ -124,10 +176,7 @@ while True:
             print("Você selecionou a opção 10.")
             exibir_submenu()
             
-        elif opcao == 11: #BÁRBARA:
-            # Determinar a sequência de vértices visitados na busca em largura e informar a(s)
-            # aresta(s) que não faz(em) parte da árvore de busca em largura. OBS: a árvore de
-            # largura deve ser gerada também em formato GraphML.
+        elif opcao == 11:
             print ("Vértices do grafo: ", Grafo.nodes())
             vertice = input("Digite um vértice de início: ")
             sequencia = list(edge_bfs(Grafo, vertice))
@@ -152,14 +201,20 @@ while True:
                 print("Todas as arestas do grafo estão na árvore de busca em largura")
             nx.write_graphml(largura, "arvore_bfs.graphml")
             print("A árvore de busca em largura está salva em formato GraphML")
+            print("Deseja exibir a árvore de busca em largura?")
+            print("1 - Sim")
+            print("2 - Não")
+            opcao = int(input("Digite uma opção: "))
+            if opcao == 1:
+                configurarGrafo(largura)
             exibir_submenu()
             
         elif opcao == 12:
             print("Você selecionou a opção 12.")
             exibir_submenu()
             
-        elif opcao == 13: # Ana
-            print("Você selecionou a opção 13.")
+        elif opcao == 13:
+            print ("Vértices do grafo: ", Grafo.nodes())
             vertice = input("De qual vertice gostaria de determinar a centralidade?\n")
             
             # Nao utilizando a funcao pronta
@@ -175,7 +230,7 @@ while True:
             exibir_submenu()
             
         elif opcao == 14:
-            print("Você selecionou a opção 14.")
+            print("Saindo...")
             break
         else:
             print("Opção inválida.")
