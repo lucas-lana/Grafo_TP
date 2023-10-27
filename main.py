@@ -27,7 +27,7 @@ def exibir_submenu():
 def configurarGrafo(Grafo_Generico):
 
     direciionado = nx.is_directed(Grafo_Generico)
-    poderado = all('weight' in Grafo_Generico[u][v] for u, v in Grafo_Generico.edges())
+    ponderado = 'weight' in Grafo_Generico.edges()
     
     print("----------//----------\nDeseja que os vétices sejam numerados?")
     print("1 - Sim")
@@ -87,8 +87,8 @@ def configurarGrafo(Grafo_Generico):
         
     if direciionado == True:
         
-        if poderado == True:
-                # Desenha os vértices
+        if ponderado == True:
+                #Desenha os vértices
                 nx.draw_networkx_nodes(Grafo_Generico, pos, with_labels=valor, node_size=500, node_color=cor_vertices)
                 
                 # Desenha as arestas
@@ -109,7 +109,7 @@ def configurarGrafo(Grafo_Generico):
         plt.show()
     
     else: 
-        if poderado == True:
+        if ponderado == True:
             # Desenha os vértices
             nx.draw_networkx_nodes(Grafo_Generico, pos, with_labels=valor, node_size=500, node_color=cor_vertices)
                 
@@ -223,12 +223,12 @@ while True:
             diametro = diameter(Grafo)
             print(diametro)
             exibir_submenu()
-            
+
         #Determina o centro do grafo    
-	elif escolha == 10:
-		print("Você selecionou a opção 10.")
-		print(list(nx.center(G)))
-		exibir_submenu()
+        elif escolha == 10:
+            print("Você selecionou a opção 10.")
+            print(list(nx.center(Grafo)))
+            exibir_submenu()
         
         #Determina sequencia de vertices visitados na busca em largura    
         elif escolha == 11:
@@ -267,13 +267,13 @@ while True:
         #Determina distância e caminho mínimo    
         elif escolha == 12:
             print("Você selecionou a opção 12.")
-			v1=int(input("Digite o primeiro vertice desejado"))
-			v2=int(input("Digite o segundo vertice desejado"))
-			length, path = nx.bidirectional_dijkstra(Grafo, v1, v2)
-			print("Distancia:")
-			print(length)
-			print("Caminho:")
-			print(path)
+            v1 = int(input("Digite o primeiro vertice desejado"))
+            v2 = int(input("Digite o segundo vertice desejado"))
+            length, path = nx.bidirectional_dijkstra(Grafo, v1, v2)
+            print("Distancia:")
+            print(length)
+            print("Caminho:")
+            print(path)
             exibir_submenu()
         
         #Determina a proximidade C de um vértice    
@@ -305,7 +305,5 @@ while True:
          
         #Tempo de espera para aparecer o menu principal novamente    
         time.sleep(1)
-            print("Retornando ao menu principal...")
-         
-        #Tempo de espera para aparecer o menu principal novamente    
-        time.sleep(1)
+        print("Retornando ao menu principal...")
+
