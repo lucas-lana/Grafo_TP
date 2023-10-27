@@ -24,6 +24,10 @@ def exibir_submenu():
 
 #Função para configurar a exibição do grafo
 def configurarGrafo(Grafo_Generico):
+
+    direciionado = nx.is_directed(Grafo_Generico)
+    poderado = all('weight' in Grafo_Generico[u][v] for u, v in Grafo_Generico.edges())
+    
     print("----------//----------\nDeseja que os vétices sejam numerados?")
     print("1 - Sim")
     print("2 - Não")
@@ -77,10 +81,48 @@ def configurarGrafo(Grafo_Generico):
         cor_arestas = 'black'
     elif cor_arestas == 6:
         cor_arestas = 'white'
+        
+    pos = nx.spring_layout(Grafo_Generico)    
+        
+    if direciionado == True:
+        
+        if poderado == True:
+                # Desenha os vértices
+                nx.draw_networkx_nodes(Grafo_Generico, pos, with_labels=valor, node_size=500, node_color=cor_vertices)
                 
-    pos = nx.spring_layout(Grafo_Generico)
-    nx.draw(Grafo_Generico, pos, with_labels=valor, font_weight='normal', node_size=300, node_color=cor_vertices, edge_color=cor_arestas)
-    plt.show()
+                # Desenha as arestas
+                nx.draw_networkx_edges(Grafo_Generico, pos, edge_color=cor_arestas, width=2, arrows=True)
+                
+                # Desenha os pesos
+                pesos = nx.get_edge_attributes(Grafo_Generico, 'weight')
+                nx.draw_networkx_edge_labels(Grafo_Generico, pos, edge_labels=pesos)
+                
+                plt.show()
+                
+        # Desenha os vértices
+        nx.draw_networkx_nodes(Grafo_Generico, pos, with_labels=valor, node_size=500, node_color=cor_vertices)
+    
+        # Desenha as arestas
+        nx.draw_networkx_edges(Grafo_Generico, pos, edge_color=cor_arestas, width=2, arrows=True)  
+        
+        plt.show()
+    
+    else: 
+        if poderado == True:
+            # Desenha os vértices
+            nx.draw_networkx_nodes(Grafo_Generico, pos, with_labels=valor, node_size=500, node_color=cor_vertices)
+                
+            # Desenha as arestas
+            nx.draw_networkx_edges(Grafo_Generico, pos, edge_color=cor_arestas, width=2)
+                
+            # Desenha os pesos
+            pesos = nx.get_edge_attributes(Grafo_Generico, 'weight')
+            nx.draw_networkx_edge_labels(Grafo_Generico, pos, edge_labels=pesos)
+                
+            plt.show()
+                
+        nx.draw(Grafo_Generico, pos, with_labels=valor, font_weight='normal', node_size=500, node_color=cor_vertices, edge_color=cor_arestas)
+        plt.show()
 
 
 #receberGrafo()
@@ -123,7 +165,7 @@ while True:
         
         #Imprime o grafo lido
         if escolha == 1:
-            configurarGrafo(Grafo)
+            configurarGrafo(Grafo) #Mundança na função para grafos direcionados e com pesos
             exibir_submenu()
         
         #Retorna a ordem do grafo
@@ -221,7 +263,7 @@ while True:
             
         #Determina distância e caminho mínimo    
         elif escolha == 12:
-            print("Você selecionou a opção 12.")
+            print("Você selecionou a opção 12.") #Mundança na função para grafos direcionados e com pesos
             exibir_submenu()
         
         #Determina a proximidade C de um vértice    
