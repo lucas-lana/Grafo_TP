@@ -1,3 +1,4 @@
+
 import networkx as nx
 import matplotlib.pyplot as plt
 from networkx import *
@@ -199,6 +200,7 @@ while True:
         #Retorna a sequência de graus do grafo    
         elif escolha == 6:
             print("Você selecionou a opção 6.")
+            print(Grafo.degree())
             exibir_submenu()
             
         #Determina a excentricidade de um vértice    
@@ -225,6 +227,8 @@ while True:
         #Determina o centro do grafo    
         elif escolha == 10:
             print("Você selecionou a opção 10.")
+			listaCentro = list(nx.center(Grafo))
+			print(listaCentro)
             exibir_submenu()
         
         #Determina sequencia de vertices visitados na busca em largura    
@@ -263,7 +267,14 @@ while True:
             
         #Determina distância e caminho mínimo    
         elif escolha == 12:
-            print("Você selecionou a opção 12.") #Mundança na função para grafos direcionados e com pesos
+            print("Você selecionou a opção 12.")
+			v1=int(input("Digite o primeiro vertice desejado"))
+			v2=int(input("Digite o segundo vertice desejado"))
+			length, path = nx.bidirectional_dijkstra(Grafo, v1, v2)
+			print("Distancia:")
+			print(length)
+			print("Caminho:")
+			print(path)
             exibir_submenu()
         
         #Determina a proximidade C de um vértice    
@@ -291,6 +302,10 @@ while True:
         #Caso o usuário digite uma opção inválida
         else:
             print("Opção inválida.")
+            print("Retornando ao menu principal...")
+         
+        #Tempo de espera para aparecer o menu principal novamente    
+        time.sleep(1)
             print("Retornando ao menu principal...")
          
         #Tempo de espera para aparecer o menu principal novamente    
