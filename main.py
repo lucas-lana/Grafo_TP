@@ -77,8 +77,10 @@ while True:
             print("A ordem do grafo é: ", ordem)
             exibir_submenu()
             
-        elif opcao == 3:
+        elif opcao == 3: # Ana
             print("Você selecionou a opção 3.")
+            tamanho_grafo = len(Grafo.nodes()) + len(Grafo.edges())
+            print("Tamanho do grafo", tamanho_grafo)
             exibir_submenu()
                 
         elif opcao == 4:
@@ -106,8 +108,10 @@ while True:
             print("A excentricidade do vértice ", vertice, " é: ", excentricidade)
             exibir_submenu()
             
-        elif opcao == 8:
+        elif opcao == 8: # Ana
             print("Você selecionou a opção 8.")
+            raio = nx.radius(Grafo)
+            print("O raio do grafo é:", raio)
             exibir_submenu()
             
         elif opcao == 9:
@@ -154,8 +158,20 @@ while True:
             print("Você selecionou a opção 12.")
             exibir_submenu()
             
-        elif opcao == 13:
+        elif opcao == 13: # Ana
             print("Você selecionou a opção 13.")
+            vertice = input("De qual vertice gostaria de determinar a centralidade?\n")
+            
+            # Nao utilizando a funcao pronta
+            # soma = 0
+            # for no in list(Grafo.nodes):
+            #    soma += nx.dijkstra_path_length(Grafo, source=vertice, target=no)
+            # cent = (nx.number_of_nodes(Grafo) - 1)/soma
+            # print(cent)
+
+            # Utilizando a funcao pronta
+            centralidade_proximidade_c = nx.closeness_centrality(Grafo, u=vertice, distance='weight')
+            print("A centralidade de proximidade C do vertice", vertice, ": ", centralidade_proximidade_c)
             exibir_submenu()
             
         elif opcao == 14:
