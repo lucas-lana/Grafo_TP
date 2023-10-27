@@ -8,7 +8,7 @@ import time
 #Mini menu para retornar para o menu principal
 def exibir_submenu():
     while True:
-        print("\n----------//----------")
+        print("----------//----------")
         print("Deseja voltar para o menu anterior?")
         print("1 - Sim")
         print("2 - Não (Sair do programa)")
@@ -199,7 +199,6 @@ while True:
         
         #Retorna a sequência de graus do grafo    
         elif escolha == 6:
-            print("Você selecionou a opção 6.")
             print(Grafo.degree())
             exibir_submenu()
             
@@ -226,7 +225,6 @@ while True:
 
         #Determina o centro do grafo    
         elif escolha == 10:
-            print("Você selecionou a opção 10.")
             print(list(nx.center(Grafo)))
             exibir_submenu()
         
@@ -266,14 +264,17 @@ while True:
             
         #Determina distância e caminho mínimo    
         elif escolha == 12:
-            print("Você selecionou a opção 12.")
-            v1 = int(input("Digite o primeiro vertice desejado"))
-            v2 = int(input("Digite o segundo vertice desejado"))
-            length, path = nx.bidirectional_dijkstra(Grafo, v1, v2)
-            print("Distancia:")
-            print(length)
-            print("Caminho:")
-            print(path)
+            print("Vértices do grafo: ", Grafo.nodes())
+            
+            v1 = (input("Digite o primeiro vertice desejado: "))
+            v2 = (input("Digite o segundo vertice desejado: "))
+            if v1 not in Grafo.nodes() or v2 not in Grafo.nodes():
+                print("Erro: um dos vértices especificados não existe no grafo.")
+            else:
+                path = nx.bidirectional_dijkstra(Grafo, v1, v2)
+                length = nx.bidirectional_dijkstra(Grafo, v1, v2, weight='weight')
+                print("Distancia: \n", length[0])
+                print("Caminho: \n", path[1])
             exibir_submenu()
         
         #Determina a proximidade C de um vértice    
