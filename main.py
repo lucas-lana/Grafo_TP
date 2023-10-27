@@ -225,11 +225,10 @@ while True:
             exibir_submenu()
             
         #Determina o centro do grafo    
-        elif escolha == 10:
-            print("Você selecionou a opção 10.")
-			listaCentro = list(nx.center(Grafo))
-			print(listaCentro)
-            exibir_submenu()
+	elif escolha == 10:
+		print("Você selecionou a opção 10.")
+		print(list(nx.center(G)))
+		exibir_submenu()
         
         #Determina sequencia de vertices visitados na busca em largura    
         elif escolha == 11:
