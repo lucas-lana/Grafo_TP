@@ -124,7 +124,30 @@ while True:
             # Determinar a sequência de vértices visitados na busca em largura e informar a(s)
             # aresta(s) que não faz(em) parte da árvore de busca em largura. OBS: a árvore de
             # largura deve ser gerada também em formato GraphML.
-            print()
+            print ("Vértices do grafo: ", Grafo.nodes())
+            vertice = input("Digite um vértice de início: ")
+            sequencia = list(edge_bfs(Grafo, vertice))
+            largura = nx.Graph()
+            largura.add_edges_from(sequencia)
+            visitados = [vertice]
+            for aresta in sequencia:
+                if aresta[0] not in visitados:
+                    visitados.append(aresta[0])
+                if aresta[1] not in visitados:
+                    visitados.append(aresta[1])
+            print("Sequência de vértices visitados:\n", visitados)
+            isolados = []
+            for aresta in Grafo.edges:
+                if aresta not in largura.edges() and (aresta[1], aresta[0]) not in largura.edges():
+                    isolados.append(aresta)
+            if len(isolados)>0:
+                print("Arestas que não fazem parte da busca em largura:")
+                for aresta in isolados:
+                    print(aresta, end=' ')
+            else:
+                print("Todas as arestas do grafo estão na árvore de busca em largura")
+            nx.write_graphml(largura, "arvore_bfs.graphml")
+            print("A árvore de busca em largura está salva em formato GraphML")
             exibir_submenu()
             
         elif opcao == 12:
