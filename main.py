@@ -10,12 +10,12 @@ def exibir_submenu():
         print("\n----------//----------")
         print("Deseja voltar para o menu anterior?")
         print("1 - Sim")
-        print("2 - Não (Sair do programa))")
-        opcao2 = input("Digite uma opção: ")
-        opcao2 = int(opcao2)
-        if opcao2 == 1:
+        print("2 - Não (Sair do programa)")
+        opcao = input("Digite uma opção: ")
+        opcao = int(opcao)
+        if opcao == 1:
             break
-        elif opcao2 == 2:
+        elif opcao == 2:
             print("Saindo...")
             exit()
         else:
@@ -28,10 +28,10 @@ def configurarGrafo(Grafo_Generico):
     print("1 - Sim")
     print("2 - Não")
             
-    opcao3 = int(input("Digite uma opção: "))
-    if opcao3 == 1:
+    numerados = int(input("Digite uma opção: "))
+    if numerados == 1:
         valor = True     
-    elif opcao3 == 2:
+    elif numerados == 2:
         valor = False
                 
     print("----------//----------\nQual cor deseja que os vértices sejam?")
@@ -118,65 +118,75 @@ while True:
         print("14 - Sair")
         print("----------//----------")
         
-        opcao = (input("Digite uma opção: "))
-        opcao = int(opcao)
+        escolha = (input("Digite uma opção: "))
+        escolha = int(escolha)
         
-        if opcao == 1:
+        #Imprime o grafo lido
+        if escolha == 1:
             configurarGrafo(Grafo)
             exibir_submenu()
         
-        elif opcao == 2:
+        #Retorna a ordem do grafo
+        elif escolha == 2:
             ordem = Grafo.order()
             print("A ordem do grafo é: ", ordem)
             exibir_submenu()
             
-        elif opcao == 3:
-            print("Você selecionou a opção 3.")
+        #Retorna o tamanho do grafo    
+        elif escolha == 3:
             tamanho_grafo = len(Grafo.nodes()) + len(Grafo.edges())
             print("Tamanho do grafo", tamanho_grafo)
             exibir_submenu()
-                
-        elif opcao == 4:
+        
+        #Retorna os vizinhos de um vértice        
+        elif escolha == 4:
             print ("Vértices do grafo: ", Grafo.nodes())
             vertice = input("Digite um vértice: ")
             vizinhos = list(Grafo.neighbors(vertice))
             print("Os vizinhos do vértice ", vertice, " são: ", vizinhos)
             exibir_submenu()
-                
-        elif opcao == 5:
+        
+        #Determina o grau de um vértice        
+        elif escolha == 5:
             print ("Vértices do grafo: ", Grafo.nodes())
             vertice = input("Digite um vértice: ")
             grau = Grafo.degree(vertice)          
             print("O grau do vértice ", vertice, " é: ", grau)
             exibir_submenu()
-            
-        elif opcao == 6:
+        
+        #Retorna a sequência de graus do grafo    
+        elif escolha == 6:
             print("Você selecionou a opção 6.")
             exibir_submenu()
             
-        elif opcao == 7:
+        #Determina a excentricidade de um vértice    
+        elif escolha == 7:
             print ("Vértices do grafo: ", Grafo.nodes())
             vertice = input("Digite um vértice: ")
             excentricidade = nx.eccentricity(Grafo, v=vertice, sp=None)
             print("A excentricidade do vértice ", vertice, " é: ", excentricidade)
             exibir_submenu()
-            
-        elif opcao == 8:
+        
+        #Determina o raio do grafo    
+        elif escolha == 8:
             raio = nx.radius(Grafo)
             print("O raio do grafo é:", raio)
             exibir_submenu()
-            
-        elif opcao == 9:
+        
+        #Determina o diâmetro do grafo    
+        elif escolha == 9:
             print("O diâmetro do grafo é: ", end='')
             diametro = diameter(Grafo)
             print(diametro)
             exibir_submenu()
             
-        elif opcao == 10:
+        #Determina o centro do grafo    
+        elif escolha == 10:
             print("Você selecionou a opção 10.")
             exibir_submenu()
-            
-        elif opcao == 11:
+        
+        #Determina sequencia de vertices visitados na busca em largura    
+        elif escolha == 11:
             print ("Vértices do grafo: ", Grafo.nodes())
             vertice = input("Digite um vértice de início: ")
             sequencia = list(edge_bfs(Grafo, vertice))
@@ -204,16 +214,18 @@ while True:
             print("Deseja exibir a árvore de busca em largura?")
             print("1 - Sim")
             print("2 - Não")
-            opcao = int(input("Digite uma opção: "))
-            if opcao == 1:
+            exibir = int(input("Digite uma opção: "))
+            if exibir == 1:
                 configurarGrafo(largura)
             exibir_submenu()
             
-        elif opcao == 12:
+        #Determina distância e caminho mínimo    
+        elif escolha == 12:
             print("Você selecionou a opção 12.")
             exibir_submenu()
-            
-        elif opcao == 13:
+        
+        #Determina a proximidade C de um vértice    
+        elif escolha == 13:
             print ("Vértices do grafo: ", Grafo.nodes())
             vertice = input("De qual vertice gostaria de determinar a centralidade?\n")
             
@@ -228,11 +240,16 @@ while True:
             centralidade_proximidade_c = nx.closeness_centrality(Grafo, u=vertice, distance='weight')
             print("A centralidade de proximidade C do vertice", vertice, ": ", centralidade_proximidade_c)
             exibir_submenu()
-            
-        elif opcao == 14:
+        
+        #Sai do programa    
+        elif escolha == 14:
             print("Saindo...")
             break
+        
+        #Caso o usuário digite uma opção inválida
         else:
             print("Opção inválida.")
-            
+            print("Retornando ao menu principal...")
+         
+        #Tempo de espera para aparecer o menu principal novamente    
         time.sleep(1)
