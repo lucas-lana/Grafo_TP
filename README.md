@@ -1,5 +1,5 @@
 # Grafo_TP
-Repositório para o desinvolvimento do trabalho prático, da disciplina de grafos
+Repositório para o desinvolvimento do trabalho prático, da disciplina de grafos: https://github.com/lucas-lana/Grafo_TP
 
 
 
