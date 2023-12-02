@@ -1,4 +1,6 @@
 import networkx as nx
+import numpy as np
+import heapq
 import matplotlib.pyplot as plt
 from networkx import *
 import time
@@ -13,6 +15,8 @@ def exibir_submenu():
         opcao = input("Digite uma opção: ")
         opcao = int(opcao)
         if opcao == 1:
+            print("Retornando...")
+            time.sleep(0.5)
             break
         elif opcao == 2:
             print("Saindo...")
@@ -324,11 +328,73 @@ while True:
                 elif escolha2 == 3:
                     #Determinar a árvore geradora mínima de um grafo
                     #Lucas
+                    # Obtém a matriz de pesos do grafo
+                    arestas_ordenadas = []  # Lista de arestas ordenadas por peso
+                    heapq.heapify(arestas_ordenadas)
+
+                    # Escolhe um vértice inicial (pode ser qualquer um)
+                    vertice_inicial = list(Grafo.nodes())[0]
+
+                    arestas_visitadas = set()
+                    arvore_geradora_minima = nx.Graph()
+
+                    for vizinho, dados in Grafo[vertice_inicial].items():
+                        peso = dados.get('weight', 1)  # Se 'weight' não existir, assume peso 1
+                        heapq.heappush(arestas_ordenadas, (peso, vertice_inicial, vizinho))
+
+                    while arestas_ordenadas:
+                        peso, u, v = heapq.heappop(arestas_ordenadas)
+
+                        if v not in arvore_geradora_minima:
+                            arvore_geradora_minima.add_edge(u, v, weight=peso)
+                            arestas_visitadas.add((u, v))
+
+                            for vizinho, dados in Grafo[v].items():
+                                 if (v, vizinho) not in arestas_visitadas and (vizinho, v) not in arestas_visitadas:
+                                    peso = dados.get('weight', 1)  # Se 'weight' não existir, assume peso 1
+                                    heapq.heappush(arestas_ordenadas, (peso, v, vizinho))
+
+                    
+                    peso_total = sum(data['weight'] for _, _, data in arvore_geradora_minima.edges(data=True))
+                    print("O peso total da árvore geradora mínima é: ", peso_total)
+                    while True:
+                        print("Deseja exibir a árvore geradora mínima?")
+                        print("1 - Sim")
+                        print("2 - Não")
+                        exibir = int(input("Digite uma opção: "))
+                        if exibir == 1:
+                            configurarGrafo(arvore_geradora_minima)
+                            break
+                        elif exibir == 2:
+                            break
+                        else:
+                            print("Opção inválida.")
+                    
                     exibir_submenu()
                 
                 elif escolha2 == 4:
                     #Determinar um conjunto estável de vértices de um grafo por meio de uma heurística
                     #Lucas
+                    S = []
+                    alpha = 0
+                    # Calcular graus dos vértices
+                    graus = dict(Grafo.degree())
+                    # Ordenar vértices por grau em ordem decrescente
+                    vertices_ordenados = sorted(graus, key=lambda x: graus[x], reverse=True)
+                    
+                    while len(vertices_ordenados) > 0:
+                        # Adicionar vértice de maior grau em S
+                        S.append(vertices_ordenados[0])
+                        # Remover vértice de maior grau de vertices_ordenados
+                        vertices_ordenados.remove(vertices_ordenados[0])
+                        # Remover vizinhos de vértice de maior grau de vertices_ordenados
+                        for vizinho in Grafo.neighbors(S[-1]):
+                            if vizinho in vertices_ordenados:
+                                vertices_ordenados.remove(vizinho)
+                        # Atualizar alpha
+                        alpha += 1
+                        
+                    print("Conjunto estável de vértices: ", S)
                     exibir_submenu()
                     
                 elif escolha2 == 5:
@@ -344,8 +410,10 @@ while True:
                 else :
                     print("Opção inválida.")
                     print("Retornando ao menu Funções Extras...")
+                    time.sleep(1)
         
-        
+            time.sleep(1)
+            print("Retornando ao menu principal...")
         
         #Sai do programa    
         elif escolha == 15:
@@ -356,6 +424,7 @@ while True:
         else:
             print("Opção inválida.")
             print("Retornando ao menu principal...")
+            time.sleep(1)
          
         #Tempo de espera para aparecer o menu principal novamente    
         time.sleep(1)
