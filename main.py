@@ -1,8 +1,6 @@
-
 import networkx as nx
 import matplotlib.pyplot as plt
 from networkx import *
-import os
 import time
 
 #Mini menu para retornar para o menu principal
@@ -158,7 +156,8 @@ while True:
         print("11 - Determinar sequencia de vertices visitados na busca em largura")
         print("12 - Determinar distância e caminho mínimo")
         print("13 - Determinar a proximidade C de um vértice")
-        print("14 - Sair")
+        print("14 - Funções extras (TP2)")
+        print("15 - Sair")
         print("----------//----------")
         
         escolha = (input("Digite uma opção: "))
@@ -294,8 +293,62 @@ while True:
             print("A centralidade de proximidade C do vertice", vertice, ": ", centralidade_proximidade_c)
             exibir_submenu()
         
-        #Sai do programa    
         elif escolha == 14:
+            #Funções extras
+            while True:
+                print("\n\n/--------FUNÇÕES EXTRAS--------/")
+                print("\n/-------------TP2-------------/")
+                print("01 - Verificar se o grafo possuí ciclo")
+                print("02 - Encontrar o menor ciclo do grafo")
+                print("03 - Determinar a árvore geradora mínima de um grafo")
+                
+                #Aproveitar e dizer a euristica usada
+                print("04 - Determinar um conjunto estável de vértices de um grafo por meio de uma heurística")
+                print("05 - eterminar o emparelhamento máximo em um grafo")
+                print("06 - Voltar ao menu principal")
+                print("----------//----------")
+                
+                escolha2 = (input("Digite uma opção: "))
+                escolha2 = int(escolha2)
+                
+                if escolha2 == 1:
+                    #Verificar se o grafo possuí ciclo
+                    #Jessica
+                    exibir_submenu()
+                
+                elif escolha2 == 2:
+                    #Encontrar o menor ciclo do grafo
+                    #Bárabara
+                    exibir_submenu()
+                    
+                elif escolha2 == 3:
+                    #Determinar a árvore geradora mínima de um grafo
+                    #Lucas
+                    exibir_submenu()
+                
+                elif escolha2 == 4:
+                    #Determinar um conjunto estável de vértices de um grafo por meio de uma heurística
+                    #Lucas
+                    exibir_submenu()
+                    
+                elif escolha2 == 5:
+                    #Determinar o emparelhamento máximo em um grafo
+                    #Ana
+                    exibir_submenu()
+                    
+                elif escolha2 == 6:
+                    #Retorna ao menu principal
+                    print("Retornando ao menu principal...")
+                    break
+                
+                else :
+                    print("Opção inválida.")
+                    print("Retornando ao menu Funções Extras...")
+        
+        
+        
+        #Sai do programa    
+        elif escolha == 15:
             print("Saindo...")
             break
         
