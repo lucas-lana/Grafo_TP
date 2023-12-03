@@ -308,7 +308,7 @@ while True:
                 
                 #Aproveitar e dizer a euristica usada
                 print("04 - Determinar um conjunto estável de vértices de um grafo por meio de uma heurística")
-                print("05 - eterminar o emparelhamento máximo em um grafo")
+                print("05 - Determinar o emparelhamento máximo em um grafo")
                 print("06 - Voltar ao menu principal")
                 print("----------//----------")
                 
@@ -400,6 +400,11 @@ while True:
                 elif escolha2 == 5:
                     #Determinar o emparelhamento máximo em um grafo
                     #Ana
+                    matching = nx.maximal_matching(Grafo)
+                    print("Emparelhamento máximo:")
+                    for edge in matching:
+                        print(edge)
+
                     exibir_submenu()
                     
                 elif escolha2 == 6:
