@@ -24,6 +24,29 @@ def exibir_submenu():
         else:
             print("Opção inválida.")
 
+def DFS(grafo, v, visited, recStack):
+    visited.add(v)
+    recStack.add(v)
+
+    for neighbor in grafo[v]:
+        if neighbor not in visited:
+            if DFS(grafo, neighbor, visited, recStack):
+                return True
+        elif neighbor in recStack:
+            return True
+            
+    recStack.remove(v)
+    return False
+
+def verificaCiclo(grafo):
+    visited = set()
+    recStack = set()
+
+    for vertex in grafo:
+        if vertex not in visited:
+            if DFS(grafo, vertex, visited, recStack):
+                return True
+    return False
 
 #Função para configurar a exibição do grafo
 def configurarGrafo(Grafo_Generico):
@@ -317,7 +340,10 @@ while True:
                 
                 if escolha2 == 1:
                     #Verificar se o grafo possui ciclo
-                    #Jessica
+                    if verificaCiclo(Grafo):
+                        print("O grafo possui ciclo.")
+                    else:
+                        print("O grafo não possui ciclo.")
                     exibir_submenu()
                 
                 elif escolha2 == 2:
