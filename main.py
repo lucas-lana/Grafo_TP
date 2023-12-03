@@ -316,13 +316,13 @@ while True:
                 escolha2 = int(escolha2)
                 
                 if escolha2 == 1:
-                    #Verificar se o grafo possuí ciclo
+                    #Verificar se o grafo possui ciclo
                     #Jessica
                     exibir_submenu()
                 
                 elif escolha2 == 2:
                     #Encontrar o menor ciclo do grafo
-                    #Bárabara
+                    print(nx.minimum_cycle_basis(Grafo))
                     exibir_submenu()
                     
                 elif escolha2 == 3:
