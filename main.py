@@ -426,11 +426,17 @@ while True:
                 elif escolha2 == 5:
                     #Determinar o emparelhamento máximo em um grafo
                     #Ana
-                    matching = nx.maximal_matching(Grafo)
-                    print("Emparelhamento máximo:")
-                    for edge in matching:
-                        print(edge)
 
+                    # Encontrar o emparelhamento máximo
+                    matching = nx.max_weight_matching(Grafo, maxcardinality=True)
+
+                    print("Emparelhamento máximo:", matching)
+                    
+                    # Encontrar emparelhamento maximal
+                    # matching = nx.maximal_matching(Grafo)
+                    # print("Emparelhamento maximal:")
+                    # for edge in matching:
+                    #     print(edge)
                     exibir_submenu()
                     
                 elif escolha2 == 6:
